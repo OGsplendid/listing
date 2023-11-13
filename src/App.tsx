@@ -1,12 +1,18 @@
-// import { useState } from 'react'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import './App.css'
-import '../public/data';
+import { Listing } from './components/Listing/Listing'
+import * as etsy from './components/etsy.json'
+
+// const str = 'default' as string;
 
 function App() {
-  // const [count, setCount] = useState(0)
+  console.log(etsy)
+  const data = etsy['default'];
 
   return (
     <>
+      <Listing items={data} />
     </>
   )
 }

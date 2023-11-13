@@ -1,9 +1,11 @@
-import React from 'react';
+type TMainImage = {
+    url_570xN: string,
+}
 
-interface IItem {
+export interface IItem {
     listing_id: number,
     url: string,
-    MainImage: string,
+    MainImage: TMainImage,
     title: string,
     currency_code: string,
     price: string,
@@ -16,15 +18,16 @@ type TItemProps = {
 
 export const Item = ({ item }: TItemProps) => {
 
-   const finalTitle = item.title.length <= 50 ? item.title : `${item.title.slice(0, 50)}...`;
-   const finalQuantity = item.quantity <= 10 ? 'low' : item.quantity > 20 ? 'high' : 'medium';
+    const image = item.MainImage && item.MainImage.url_570xN ? item.MainImage.url_570xN : '';
+    const finalTitle = !item.title ? '' : item.title.length <= 50 ? item.title : `${item.title.slice(0, 50)}...`;
+    const finalQuantity = item.quantity <= 10 ? 'low' : item.quantity > 20 ? 'high' : 'medium';
 
   return (
     <div>
         <div className="item">
             <div className="item-image">
                 <a href={item.url}>
-                    <img src={item.MainImage} />
+                    <img src={image} />
                 </a>
             </div>
             <div className="item-details">
